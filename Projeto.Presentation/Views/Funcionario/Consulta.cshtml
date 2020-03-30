@@ -1,0 +1,77 @@
+﻿@model List<Projeto.Data.Entities.Funcionario>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Consulta</title>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <div class="card card-body bg-dark text-white">
+            <h3>Sistema de cadastro de funcionários</h3>
+            <p>Consulta de funcionário</p>
+        </div>
+        <hr />
+        <br />
+        <a href="/Home/Index">Voltar</a>
+        <br />
+        <br />
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome do Funcionário</th>
+                    <th>Salário</th>
+                    <th>Data de admissão</th>
+                    <th>Cargo</th>
+                    <th>Operações</th>
+                </tr>
+
+                <strong>@TempData["Mensagem"]</strong>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdFuncionario</td>
+                        <td>@item.Nome</td>
+                        <td>@item.Salario.ToString("c")</td>
+                        <td>@item.DataAdmissao</td>
+                        <td>@item.Cargo</td>
+                        <td class="text-center">
+                            <a href="/Funcionario/Edicao/@item.IdFuncionario" class="btn btn-info btn-sm">Atualizar</a>
+                            <a href="/Funcionario/Exclusao/@item.IdFuncionario" onclick="return ConfirmarExclusao();" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        Quantidade de registros: @Model.Count
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+    </div>
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+
+    <script>
+        function ConfirmarExclusao() {
+            return window.confirm('Deseja realmente excluir o funcionario selecionado?')
+        }
+    </script>
+
+</body>
+</html>

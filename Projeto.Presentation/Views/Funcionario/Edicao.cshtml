@@ -1,0 +1,67 @@
+﻿@model Projeto.Presentation.Models.EditarFuncionarioModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edicao</title>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <div class="card card-body bg-dark text-white">
+            <h3>Sistema de cadastro de funcionários</h3>
+            <p>Edição de funcionário</p>
+        </div>
+        <hr />
+        <br />
+        <a href="/Home/Index">Voltar</a>
+        <br />
+        <br />
+        <div class="text-danger">
+            @Html.ValidationSummary()
+        </div>
+
+        <form action="/Funcionario/Edicao" method="post">
+
+            @Html.HiddenFor(model => model.IdFuncionario)
+
+            <label>Nome do funcionário</label>
+
+            @Html.TextBoxFor(model => model.Nome,
+           new { @placeholder = "Nome", @class = "form-control col-md-4" })
+
+
+            <label>Salário</label>
+            @Html.TextBoxFor(model => model.Salario,
+           new { @placeholder = "Salario", @class = "form-control col-md-4" })
+
+
+            <label>Data de admissão</label>
+            @Html.TextBoxFor(model => model.DataAdmissao,
+           new { @placeholder = "Data de admissão", @class = "form-control col-md-4" })
+
+
+            <label>Cargo</label>
+            @Html.TextBoxFor(model => model.Cargo,
+           new { @placeholder = "Cargo", @class = "form-control col-md-4" })
+
+
+            <br />
+
+            <input type="submit" value="Salvar alterações" class="btn btn-dark" />
+
+            <br />
+
+            <strong>@TempData["Mensagem"]</strong>
+        </form>
+
+
+    </div>
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+</body>
+</html>
